@@ -23,7 +23,7 @@ platform_options = node["nova"]["platform"]
 
 platform_options["nova_network_packages"].each do |pkg|
   package pkg do
-    action :upgrade
+    action :install
     options platform_options["package_overrides"]
   end
 end

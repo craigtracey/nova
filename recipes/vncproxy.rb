@@ -23,7 +23,7 @@ platform_options = node["nova"]["platform"]
 
 platform_options["nova_vncproxy_packages"].each do |pkg|
   package pkg do
-    action :upgrade
+    action :install
     options platform_options["package_overrides"]
   end
 end
@@ -31,7 +31,7 @@ end
 # required for vnc console authentication
 platform_options["nova_vncproxy_consoleauth_packages"].each do |pkg|
   package pkg do
-    action :upgrade
+    action :install
   end
 end
 
