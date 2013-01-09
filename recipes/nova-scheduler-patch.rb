@@ -3,6 +3,7 @@
 # Recipe:: nova-scheduler-patch
 #
 # Copyright 2012, Rackspace US, Inc.
+# Copyright 2012-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +27,7 @@ template "/usr/share/pyshared/nova/scheduler/filters/affinity_filter.py" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, resources(:service => "nova-scheduler"), :immediately
+  notifies :restart, "service[nova-scheduler]", :immediately
   only_if { ::Chef::Recipe::Patch.check_package_version("nova-scheduler","2012.1+stable~20120612-3ee026e-0ubuntu1.2",node) ||
     ::Chef::Recipe::Patch.check_package_version("nova-scheduler","2012.1+stable~20120612-3ee026e-0ubuntu1.3",node) }
 end

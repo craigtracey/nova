@@ -3,6 +3,7 @@
 # Recipe:: api-ec2
 #
 # Copyright 2012, Rackspace US, Inc.
+# Copyright 2012-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,7 +48,7 @@ service "nova-api-ec2" do
   service_name platform_options["api_ec2_service"]
   supports :status => true, :restart => true
   action :enable
-  subscribes :restart, resources(:template => "/etc/nova/nova.conf"), :delayed
+  subscribes :restart, "template[/etc/nova/nova.conf]"
 end
 
 ks_admin_endpoint = get_access_endpoint("keystone", "keystone", "admin-api")
@@ -121,7 +122,7 @@ template "/etc/nova/api-paste.ini" do
             :admin_port => ks_admin_endpoint["port"],
             :admin_token => keystone["admin_token"]
   )
-  notifies :restart, resources(:service => "nova-api-ec2"), :delayed
+  notifies :restart, "service[nova-api-ec2]"
 end
 
 # Register EC2 Endpoint

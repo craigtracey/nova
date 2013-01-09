@@ -3,6 +3,7 @@
 # Recipe:: volume
 #
 # Copyright 2012, Rackspace US, Inc.
+# Copyright 2012-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,7 +38,7 @@ service "nova-volume" do
   service_name platform_options["nova_volume_service"]
   supports :status => true, :restart => true
   action :disable
-  subscribes :restart, resources(:template => "/etc/nova/nova.conf"), :delayed
+  subscribes :restart, "template[/etc/nova/nova.conf]"
 end
 
 # TODO(rp): need the flag on whether or not to start nova-volume service

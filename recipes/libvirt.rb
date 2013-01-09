@@ -3,6 +3,7 @@
 # Recipe:: libvirt
 #
 # Copyright 2012, Rackspace US, Inc.
+# Copyright 2012-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -75,7 +76,7 @@ template "/etc/libvirt/libvirtd.conf" do
   variables(
     :auth_tcp => node["nova"]["libvirt"]["auth_tcp"]
     )
-  notifies :restart, resources(:service => "libvirt-bin"), :immediately
+  notifies :restart, "service[libvirt-bin]", :immediately
 end
 
 template "/etc/default/libvirt-bin" do
@@ -83,7 +84,7 @@ template "/etc/default/libvirt-bin" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, resources(:service => "libvirt-bin"), :immediately
+  notifies :restart, "service[libvirt-bin]", :immediately
   only_if { platform?(%w{ubuntu debian}) }
 end
 
@@ -92,7 +93,7 @@ template "/etc/sysconfig/libvirtd" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, resources(:service => "libvirt-bin"), :immediately
+  notifies :restart, "service[libvirt-bin]", :immediately
   only_if { platform?(%w{fedora redhat centos}) }
 end
 

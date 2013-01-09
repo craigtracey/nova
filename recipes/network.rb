@@ -3,6 +3,7 @@
 # Recipe:: network
 #
 # Copyright 2012, Rackspace US, Inc.
+# Copyright 2012-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,5 +33,5 @@ service "nova-network" do
   service_name platform_options["nova_network_service"]
   supports :status => true, :restart => true
   action :enable
-  subscribes :restart, resources(:template => "/etc/nova/nova.conf"), :delayed
+  subscribes :restart, "template[/etc/nova/nova.conf]"
 end
