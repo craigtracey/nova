@@ -66,7 +66,7 @@ keystone_register "Register Service Tenant" do
   auth_token keystone["admin_token"]
   tenant_name node["nova"]["service_tenant_name"]
   tenant_description "Service Tenant"
-  tenant_enabled "true" # Not required as this is the default
+  tenant_enabled true # Not required as this is the default
   action :create_tenant
 end
 
@@ -80,7 +80,7 @@ keystone_register "Register Service User" do
   tenant_name node["nova"]["service_tenant_name"]
   user_name node["nova"]["service_user"]
   user_pass node["nova"]["service_pass"]
-  user_enabled "true" # Not required as this is the default
+  user_enabled true # Not required as this is the default
   action :create_user
 end
 
