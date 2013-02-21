@@ -181,6 +181,7 @@ when "fedora", "redhat", "centos"
     "nova_api_metadata_service" => "openstack-nova-api",
     "nova_compute_packages" => ["openstack-nova-compute"],
     "nova_compute_service" => "openstack-nova-compute",
+    #FIXME(cmt) - need RH packages for nova-conductor
     "nova_network_packages" => ["iptables", "openstack-nova-network"],
     "nova_network_service" => "openstack-nova-network",
     "nova_scheduler_packages" => ["openstack-nova-scheduler"],
@@ -215,6 +216,8 @@ when "ubuntu"
     "nova_volume_service" => "nova-volume",
     "nova_compute_packages" => ["nova-compute"],
     "nova_compute_service" => "nova-compute",
+    "nova_conductor_packages" => ["nova-conductor"],
+    "nova_conductor_service" => "nova-conductor",
     "nova_network_packages" => ["iptables", "nova-network"],
     "nova_network_service" => "nova-network",
     "nova_scheduler_packages" => ["nova-scheduler"],
