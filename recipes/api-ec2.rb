@@ -120,7 +120,10 @@ template "/etc/nova/api-paste.ini" do
             :service_port => ks_service_endpoint["port"],
             :keystone_api_ipaddress => ks_service_endpoint["host"],
             :admin_port => ks_admin_endpoint["port"],
-            :admin_token => keystone["admin_token"]
+            :admin_token => keystone["admin_token"],
+            :service_user => node["nova"]["service_user"],
+            :service_pass => node["nova"]["service_pass"],
+            :service_tenant_name => node["nova"]["service_tenant_name"]
   )
   notifies :restart, "service[nova-api-ec2]"
 end

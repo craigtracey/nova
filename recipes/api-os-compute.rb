@@ -120,7 +120,10 @@ template "/etc/nova/api-paste.ini" do
             "keystone_api_ipaddress" => ks_service_endpoint["host"],
             "service_port" => ks_service_endpoint["port"],
             "admin_port" => ks_admin_endpoint["port"],
-            "admin_token" => keystone["admin_token"]
+            "admin_token" => keystone["admin_token"],
+            "service_user" => node["nova"]["service_user"],
+            "service_pass" => node["nova"]["service_pass"],
+            "service_tenant_name" => node["nova"]["service_tenant_name"]
             )
   notifies :restart, "service[nova-api-os-compute]"
 end
